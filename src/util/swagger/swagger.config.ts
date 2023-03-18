@@ -7,7 +7,7 @@ export const config = new DocumentBuilder()
     .addTag('cats')
     .build();
 
-export function SwaggerConfig(mapping, app, config) {
+export function SwaggerConfig(url: string, app: any, config: any) {
     const document = SwaggerModule.createDocument(app, config);
-    return SwaggerModule.setup(mapping, app, document);
+    return SwaggerModule.setup(url, app, document);
 }
