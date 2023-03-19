@@ -6,10 +6,11 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    BoardModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      autoSchemaFile: true,
     }),
+    BoardModule,    
   ],
   controllers: [],
   providers: [AppService],
