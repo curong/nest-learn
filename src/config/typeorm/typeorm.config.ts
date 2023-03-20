@@ -1,23 +1,28 @@
-import { DataSource } from "typeorm";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export const OrmConfig = [
-    {
-      provide: 'DATA_SOURCE',
-      useFactory: async () => {
-        const dataSource = new DataSource({
-          type: 'postgres',
-          host: 'localhost',
-          port: 3306,
-          username: 'root',
-          password: 'root',
-          database: 'test',
-          entities: [
-              __dirname + '/../../**/*.entity{.ts,.js}',
-          ],
-          synchronize: true,
-        });
-  
-        return dataSource.initialize();
-      },
-    },
-  ];
+function ormConfig(): TypeOrmModuleOptions {
+  const commonConf = {
+    SYNCRONIZE: true,
+    ENTITIES: [__dirname + '\\domain\\*.entity{.ts,.js}'],
+    MIGRATIONS: [__dirname + '/migrations/**/*{.ts,.js}'],
+    MIGRATIONS_RUN: false,
+  };
+
+  return {
+    
+    name: 'default',
+    type: 'postgres',
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    logging: true,
+    synchronize: commonConf.SYNCRONIZE,
+    entities: commonConf.ENTITIES,
+    migrations: commonConf.MIGRATIONS,
+    migrationsRun: commonConf.MIGRATIONS_RUN,
+  };
+}
+
+export { ormConfig };
