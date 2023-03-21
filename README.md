@@ -73,5 +73,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 ## Setup Library
+yarn add uuid
 yarn add @nestjs/typeorm typeorm pg
+yarn add class-validator class-transformer
 

@@ -14,7 +14,7 @@ import { ormConfig } from 'src/config/typeorm/orm.config';
       autoSchemaFile: true,
     }),
     // TypeORM Using //
-    TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
+    // TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
     BoardModule,    
   ],
   controllers: [],
