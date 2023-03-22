@@ -1,5 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+
+
 function ormConfig(): TypeOrmModuleOptions {
   const commonConf = {
     SYNCRONIZE: true,
@@ -9,7 +11,7 @@ function ormConfig(): TypeOrmModuleOptions {
   };
 
   return {
-    
+
     name: 'default',
     type: 'postgres',
     database: process.env.DB_NAME,

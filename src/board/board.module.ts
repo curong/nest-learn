@@ -6,13 +6,18 @@ https://docs.nestjs.com/modules
 
 import { Module } from '@nestjs/common';
 import { BoardResolver } from './board.resolver';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Board } from './board.entity';
+import { BoardRepository } from './board.repository';
 
 @Module({
-    imports: [],
-    controllers: [BoardController,],
+    imports: [TypeOrmModule.forFeature([Board])],
+    controllers: [BoardController],
     providers: [
         BoardService,
-        BoardResolver
+        BoardResolver,
+        BoardRepository,
     ],
 })
+
 export class BoardModule { }

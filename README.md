@@ -76,4 +76,5 @@ Nest is [MIT licensed](LICENSE).
 - yarn add uuid
 - yarn add @nestjs/typeorm typeorm pg
 - yarn add class-validator class-transformer
+- yarn add dotenv @nestjs/config
 
