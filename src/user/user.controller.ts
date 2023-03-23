@@ -1,23 +1,22 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 import { CreateUserDto } from "./dto/CreateUser.dto";
 import { UpdateUserDTO } from "./dto/UpdateUser.dto";
-import { CreateUserParams } from "./params/create-user.params";
 import { UserService } from "./user.service";
 
 @Controller('user')
 export class UserController {
 
-    constructor( private userService: UserService) {}
+    constructor(private userService: UserService) { }
 
     @Get()
     async getUsers() {
         return await this.userService.findUsers();
-        
+
     }
-    
+
     @Post()
     createUser(@Body() createUserDto: CreateUserDto) {
-        return this.userService.createUser(createUserDto);        
+        return this.userService.createUser(createUserDto);
     }
 
     @Post(':username')
@@ -35,6 +34,6 @@ export class UserController {
         await this.userService.deleteUser(id);
     }
 
-    
+
 
 }

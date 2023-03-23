@@ -7,8 +7,8 @@ import { User } from "./user.entity";
 
 @Injectable()
 export class UserService {
-   
-    constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
+
+    constructor(@InjectRepository(User) private userRepository: Repository<User>) { }
 
     findUsers() {
         return this.userRepository.find()
@@ -20,16 +20,16 @@ export class UserService {
     }
 
     createUser(userDetails: CreateUserParams) {
-        const newUser = this.userRepository.create({...userDetails, createdAt: new Date()});
+        const newUser = this.userRepository.create({ ...userDetails, createdAt: new Date() });
         this.userRepository.save(newUser);
     }
 
-    updateUser(id: number ,updateUserDetail: UpdateUserParams) {
-        return this.userRepository.update({id}, {...updateUserDetail})
+    updateUser(id: number, updateUserDetail: UpdateUserParams) {
+        return this.userRepository.update({ id }, { ...updateUserDetail })
     }
 
     deleteUser(id: number) {
-        return this.userRepository.delete({id});
+        return this.userRepository.delete({ id });
     }
 
 }

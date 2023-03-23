@@ -1,17 +1,18 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Board } from 'src/board/board.entity';
+import { User } from 'src/user/user.entity';
 
 
 
 function ormConfig(): TypeOrmModuleOptions {
   const commonConf = {
     SYNCRONIZE: true,
-    ENTITIES: [__dirname + '\\domain\\*.entity{.ts,.js}'],
+    ENTITIES: [__dirname + '\\domain\\*.entity{.ts,.js}', User, Board],
     MIGRATIONS: [__dirname + '/migrations/**/*{.ts,.js}'],
     MIGRATIONS_RUN: false,
   };
 
   return {
-
     name: 'default',
     type: 'postgres',
     database: process.env.DB_NAME,
