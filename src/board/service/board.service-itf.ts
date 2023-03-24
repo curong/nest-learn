@@ -1,6 +1,6 @@
-import { Board } from "./board.entity";
-import { CreateBoardDTO } from "./dto/create-board.dto";
-import { UpdateBoardDTO } from "./dto/update-board.dto";
+import { Board } from "../entity/board.entity";
+import { CreateBoardDTO } from "../dto/create-board.dto";
+import { UpdateBoardDTO } from "../dto/update-board.dto";
 
 export interface BoardServiceItf {
 

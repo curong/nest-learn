@@ -1,14 +1,14 @@
-import { BoardController } from './board.controller';
+import { BoardController } from './web/board.controller';
 /*
 https://docs.nestjs.com/modules
 */
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Board } from './board.entity';
-import { BoardRepository } from './board.repository';
-import { BoardResolver } from './board.resolver';
-import { BoardService } from './board.service';
+import { Board } from './entity/board.entity';
+import { BoardRepository } from './repository/board.repository';
+import { BoardResolver } from './resolver/board.resolver';
+import { BoardService } from './service/board.service';
 
 
 

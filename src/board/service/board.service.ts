@@ -3,11 +3,12 @@ https://docs.nestjs.com/providers#services
 */
 
 import { Injectable } from '@nestjs/common';
-import { Board } from './board.entity';
-import { BoardRepository } from './board.repository';
+import { CreateBoardDTO } from '../dto/create-board.dto';
+import { UpdateBoardDTO } from '../dto/update-board.dto';
+import { Board } from '../entity/board.entity';
+import { BoardRepository } from '../repository/board.repository';
 import { BoardServiceItf } from './board.service-itf';
-import { CreateBoardDTO } from './dto/create-board.dto';
-import { UpdateBoardDTO } from './dto/update-board.dto';
+
 
 @Injectable()
 export class BoardService implements BoardServiceItf {

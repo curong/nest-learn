@@ -1,13 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Board } from 'src/board/board.entity';
-import { User } from 'src/user/user.entity';
+import { Auth } from 'src/auth/entity/auth.entity';
+import { Board } from 'src/board/entity/board.entity';
+
 
 
 
 function ormConfig(): TypeOrmModuleOptions {
   const commonConf = {
     SYNCRONIZE: true,
-    ENTITIES: [__dirname + '\\domain\\*.entity{.ts,.js}', User, Board],
+    ENTITIES: [__dirname + '\\domain\\*.entity{.ts,.js}', Auth, Board],
     MIGRATIONS: [__dirname + '/migrations/**/*{.ts,.js}'],
     MIGRATIONS_RUN: false,
   };

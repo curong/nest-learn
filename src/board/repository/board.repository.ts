@@ -4,10 +4,10 @@ import { ID } from "@nestjs/graphql";
 import { InjectRepository } from "@nestjs/typeorm";
 import { STATUS_CODES } from "http";
 import { Repository } from "typeorm";
-import { BoardStatus } from "./board-status.enum";
-import { Board } from "./board.entity";
-import { CreateBoardDTO } from "./dto/create-board.dto";
-import { UpdateBoardDTO } from "./dto/update-board.dto";
+import { BoardStatus } from "../enum/board-status.enum";
+import { Board } from "../entity/board.entity";
+import { CreateBoardDTO } from "../dto/create-board.dto";
+import { UpdateBoardDTO } from "../dto/update-board.dto";
 
 
 @Injectable()

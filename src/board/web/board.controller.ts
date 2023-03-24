@@ -2,13 +2,13 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Res } from '@nestjs/common/decorators';
-import { Board } from './board.entity';
-import { BoardService } from './board.service';
-import { CreateBoardDTO } from './dto/create-board.dto';
-import { UpdateBoardDTO } from './dto/update-board.dto';
-import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
+import { Board } from '../entity/board.entity';
+
+import { CreateBoardDTO } from '../dto/create-board.dto';
+import { UpdateBoardDTO } from '../dto/update-board.dto';
+import { BoardService } from '../service/board.service';
 
 @Controller('board')
 @UsePipes(ValidationPipe)
