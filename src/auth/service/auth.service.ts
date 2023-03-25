@@ -4,7 +4,7 @@ import { LoginUserDTO } from "../dto/login-user.dto";
 import { Auth } from "../entity/auth.entity";
 import { AuthRepository } from "../repository/auth.repository";
 import { AuthServiceItf } from "./auth.service-itf";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt"
 
 @Injectable()
 export class AuthService implements AuthServiceItf {
@@ -15,7 +15,8 @@ export class AuthService implements AuthServiceItf {
 
     async signUp(createUserDto: CreateUserDTO): Promise<void> {
         const { userId, password, email } = { ...createUserDto }
-        const salt = await bcrypt.getSalt();
+
+        const salt = await bcrypt.genSalt(10);
         const hashedPasswpaord = await bcrypt.hash(password, salt);
 
         await this.authRepository.signUp({ userId, password: hashedPasswpaord, email });
