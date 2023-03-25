@@ -3,9 +3,7 @@ https://docs.nestjs.com/controllers#controllers
 */
 
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Res } from '@nestjs/common/decorators';
 import { Board } from '../entity/board.entity';
-
 import { CreateBoardDTO } from '../dto/create-board.dto';
 import { UpdateBoardDTO } from '../dto/update-board.dto';
 import { BoardService } from '../service/board.service';
@@ -33,7 +31,7 @@ export class BoardController {
     }
 
     @Put('/:id')
-    updateBoard(@Res() res: Response, @Param('id', ParseIntPipe) id: number, @Body() updateBoardDTO: UpdateBoardDTO) {
+    updateBoard(@Param('id', ParseIntPipe) id: number, @Body() updateBoardDTO: UpdateBoardDTO) {
         return this.boardService.updateBoard(id, updateBoardDTO);
     }
 
@@ -42,7 +40,5 @@ export class BoardController {
     deleteBoard(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.boardService.deleteBoard(id);
     }
-
-
 
 }
