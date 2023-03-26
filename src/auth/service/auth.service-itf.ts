@@ -6,6 +6,6 @@ export interface AuthServiceItf {
 
     signUp(createUserDto: CreateUserDTO);
 
-    login(loginUserDto: LoginUserDTO): Promise<Auth>;
+    signIn(loginUserDto: LoginUserDTO): Promise<Auth>;
 
 }
