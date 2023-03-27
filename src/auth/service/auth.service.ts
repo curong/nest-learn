@@ -7,18 +7,19 @@ import { AuthRepository } from "../repository/auth.repository";
 @Injectable()
 export class AuthService {
 
-    constructor(private readonly authRepository: AuthRepository) { }
+    constructor(
+        private readonly authRepository: AuthRepository,
+    ) { }
 
     async signUp(createUserDto: CreateUserDTO): Promise<void> {
         const { userId, password, email } = createUserDto;
 
         const salt = await bcrypt.genSalt(10);
         const hashedPasswpaord = await bcrypt.hash(password, salt);
-
         await this.authRepository.signUp({ userId, password: hashedPasswpaord, email });
     }
 
-    signIn(loginUserDto: LoginUserDTO): Promise<string> {
+    signIn(loginUserDto: LoginUserDTO): Promise<{ accessToken: string }> {
         return this.authRepository.signIn(loginUserDto);
     }
 

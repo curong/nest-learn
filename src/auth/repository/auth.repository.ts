@@ -1,4 +1,5 @@
 import { ConflictException, Injectable, InternalServerErrorException, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
@@ -9,7 +10,10 @@ import { Auth } from "../entity/auth.entity";
 @Injectable()
 export class AuthRepository {
 
-    constructor(@InjectRepository(Auth) private authRepository: Repository<Auth>) { }
+    constructor(
+        @InjectRepository(Auth) private authRepository: Repository<Auth>,
+        private jwtService: JwtService
+    ) { }
 
     async signUp(createUserDto: CreateUserDTO): Promise<void> {
         const { userId, password, email } = createUserDto;
@@ -26,13 +30,16 @@ export class AuthRepository {
         }
     }
 
-    async signIn(loginUserDto: LoginUserDTO): Promise<string> {
+    async signIn(loginUserDto: LoginUserDTO): Promise<{ accessToken: string }> {
         const { userId, password } = loginUserDto;
         const user = await this.authRepository.findOneBy({ userId });
         const compare = await bcrypt.compare(password, user.password)
 
+        // 유저 토큰 생성 ( Secret + Payload )
         if (user && compare) {
-            return `login ok`;
+            const payload = { userId };
+            const accessToken = await this.jwtService.sign(payload);
+            return { accessToken };
         } else {
             throw new UnauthorizedException(`login failed`);
         }

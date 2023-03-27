@@ -9,11 +9,12 @@ import { Board } from './entity/board.entity';
 import { BoardRepository } from './repository/board.repository';
 import { BoardResolver } from './resolver/board.resolver';
 import { BoardService } from './service/board.service';
+import { AuthModule } from 'src/auth/auth.module';
 
 
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Board])],
+    imports: [TypeOrmModule.forFeature([Board]), AuthModule],
     controllers: [BoardController],
     providers: [
         BoardService,

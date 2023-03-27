@@ -1,5 +1,6 @@
-import { CommonEntity } from "src/common/entity/time-manager.entity";
-import { Column, Entity, UpdateDateColumn } from "typeorm";
+import { Board } from "src/board/entity/board.entity";
+import { CommonEntity } from "src/common/entity/common.entity";
+import { Column, Entity, OneToMany, UpdateDateColumn } from "typeorm";
 
 @Entity('auth')
 export class Auth extends CommonEntity {
@@ -15,5 +16,9 @@ export class Auth extends CommonEntity {
 
     @UpdateDateColumn()
     lastLogin: Date;
+
+    @OneToMany(type => Board, board => board.auth, { eager: true })
+    boards: Board[];
+
 
 }

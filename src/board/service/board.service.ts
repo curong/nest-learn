@@ -1,17 +1,17 @@
 /*
-https://docs.nestjs.com/providers#services
+https://docs.nestjs.com/provpiders#services
 */
 
 import { Injectable } from '@nestjs/common';
+import { Auth } from 'src/auth/entity/auth.entity';
 import { CreateBoardDTO } from '../dto/create-board.dto';
 import { UpdateBoardDTO } from '../dto/update-board.dto';
 import { Board } from '../entity/board.entity';
 import { BoardRepository } from '../repository/board.repository';
-import { BoardServiceItf } from './board.service-itf';
 
 
 @Injectable()
-export class BoardService implements BoardServiceItf {
+export class BoardService {
 
     constructor(private readonly boardRepository: BoardRepository) { }
 
@@ -20,20 +20,24 @@ export class BoardService implements BoardServiceItf {
         return this.boardRepository.getBoardList();
     }
 
-    getBoardById(id: number): Promise<Board> {
-        return this.boardRepository.getBoardById(id);
+    getBoardBypid(pid: number): Promise<Board> {
+        return this.boardRepository.getBoardByPid(pid);
     }
 
-    createBoard(createBoardDto: CreateBoardDTO) {
-        return this.boardRepository.createBoard(createBoardDto);
+    getBoardByUser(auth: Auth): Promise<Board[]> {
+        return this.boardRepository.getBoardByUser(auth);
     }
 
-    deleteBoard(id: number): Promise<void> {
-        return this.boardRepository.deleteBoard(id);
+    createBoard(createBoardDto: CreateBoardDTO, auth: Auth) {
+        return this.boardRepository.createBoard(createBoardDto, auth);
     }
 
-    updateBoard(id: number, updateBoardDTO: UpdateBoardDTO) {
-        return this.boardRepository.updateBoard(id, updateBoardDTO);
+    deleteBoard(pid: number, auth: Auth): Promise<void> {
+        return this.boardRepository.deleteBoard(pid, auth);
+    }
+
+    updateBoard(pid: number, updateBoardDTO: UpdateBoardDTO) {
+        return this.boardRepository.updateBoard(pid, updateBoardDTO);
     }
 
 }

@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Auth } from 'src/auth/entity/auth.entity';
 import { Board } from 'src/board/entity/board.entity';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 
 
@@ -26,6 +27,7 @@ function ormConfig(): TypeOrmModuleOptions {
     entities: commonConf.ENTITIES,
     migrations: commonConf.MIGRATIONS,
     migrationsRun: commonConf.MIGRATIONS_RUN,
+    namingStrategy: new SnakeNamingStrategy(),
   };
 }
 

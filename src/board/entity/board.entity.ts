@@ -1,11 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Auth } from "src/auth/entity/auth.entity";
+import { CommonEntity } from "src/common/entity/common.entity";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { BoardStatus } from "../enum/board-status.enum";
 
 @Entity('board')
-export class Board extends BaseEntity {
-
-    @PrimaryGeneratedColumn('identity')
-    id: number;
+export class Board extends CommonEntity {
 
     @Column()
     title: string;
@@ -15,5 +14,8 @@ export class Board extends BaseEntity {
 
     @Column()
     status: BoardStatus;
+
+    @ManyToOne(type => Auth, auth => auth.boards, { eager: false })
+    auth: Auth;
 
 }

@@ -3,7 +3,7 @@ import { IsEmail, IsEmpty, IsNotEmpty, IsString, Matches, MaxLength, MinLength }
 export class CreateUserDTO {
 
     @IsNotEmpty({ message: `아이디를 입력해 주세요.` })
-    @Matches(/^[a-z]+[a-z0-9]{5,19}$/g , { message: '아이디는 영어로 입력해 주세요' })
+    // @Matches(/^[a-z]+[a-z0-9]{5,19}$/g , { message: '아이디는 영어로 입력해 주세요' })
     @MinLength(4, {message: `아이디는 4글자 이상 20글자 이하로 입력해 주세요.`})
     @MaxLength(20, {message: `아이디는 4글자 이상 20글자 이하로 입력해 주세요.`})
     userId: string;

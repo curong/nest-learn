@@ -17,7 +17,6 @@ import { BoardModule } from './../board/board.module';
 
     // TypeORM Using //
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
-
     AuthModule,
     BoardModule,
   ],
