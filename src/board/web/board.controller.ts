@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, ParseIntPipe, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Auth } from 'src/auth/entity/auth.entity';
 import { UserAuthentication } from 'src/common/jwt/decorator/auth.decorator';
@@ -15,6 +15,8 @@ import { BoardService } from '../service/board.service';
 @UsePipes(ValidationPipe)
 @UseGuards(AuthGuard())
 export class BoardController {
+
+    private logger: Logger = new Logger('BoardController');
 
     constructor(
         private readonly boardService: BoardService,
@@ -34,6 +36,7 @@ export class BoardController {
     getBoardByAuth(
         @UserAuthentication() auth: Auth
     ): Promise<Board[]> {
+        this.logger.verbose(`User ${auth.userId} trying to get all board`);
         return this.boardService.getBoardByUser(auth);
     }
 
@@ -43,6 +46,7 @@ export class BoardController {
         @Body() createBoardDto: CreateBoardDTO,
         @UserAuthentication() auth: Auth
     ): Promise<Board> {
+        this.logger.verbose(`User ${auth.userId} creating a new board. \n Payload: ${JSON.stringify(createBoardDto)} `)
         return this.boardService.createBoard(createBoardDto, auth);
     }
 
